@@ -1,0 +1,73 @@
+Product
+    - Id
+    - Name
+    - Price
+    - Description
+    - Image
+    - Slug
+    - SaleId
+
+Sale
+    - Id
+    - Name
+    - Value
+
+ProductSizes
+    - Id
+    - ProductId
+    - SizeId
+
+Size
+    - Id
+    - Name
+
+User
+    - Id
+    - Email
+    - Password
+    - RoleId
+
+Category
+    - Id
+    - Name
+    - Slug
+
+ProductCategoeies
+    - Id
+    - ProductId
+    - CategoryId
+
+CartProduct
+    - Id
+    - CartId
+    - ProductId
+    - Count
+
+Cart
+    - Id
+    - UserId
+    - Date
+
+Role
+    - Id
+    - Name
+
+Mail
+    - Id
+    - From
+    - Title
+    - Body
+
+AdminActivity
+    - Id
+    - Name
+    - Date
+
+--------------------
+Pages
+
+/
+/category_slug
+/product_slug
+/contact
+/
