@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/', [CategoryController::class, 'index'])->name('category');
+Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::get('/product', [ProductController::class, 'index'])->name('product');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/order', [OrderController::class, 'index'])->name('cart');

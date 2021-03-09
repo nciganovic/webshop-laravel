@@ -6,3 +6,6 @@
 
 <!-- Font awesome -->
 <script src="https://kit.fontawesome.com/d27711fee5.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />

@@ -4,10 +4,14 @@
         @include('main.includes.head')
     </head>
     <body>
-        @include('main.includes.navbar')
-        <div class="container">
-            @yield('content')
+        <div id="page-container">
+            <div id="content-wrap">
+                @include('main.includes.navbar')
+                <div class="container">
+                    @yield('content')
+                </div>
+            </div>
+            @include('main.includes.footer')
         </div>
-        @include('main.includes.footer')
     </body>
 </html>
