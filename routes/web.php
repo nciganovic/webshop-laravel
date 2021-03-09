@@ -18,9 +18,15 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AccountController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/order', [OrderController::class, 'index'])->name('cart');
+Route::get('/register', [AccountController::class, 'register_get'])->name('register_get');
+Route::post('/register', [AccountController::class, 'register_post'])->name('register_post');
+Route::get('/login', [AccountController::class, 'login_get'])->name('login_get');
+Route::post('/login', [AccountController::class, 'login_post'])->name('login_post');
+Route::get('/logout', [AccountController::class, 'logout'])->name('logout');
