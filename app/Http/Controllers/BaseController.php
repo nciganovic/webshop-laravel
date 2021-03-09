@@ -1,10 +1,14 @@
 <?php
 namespace  App\Http\Controllers;
 
-class BaseController extends Controller{
+class BaseController extends Controller
+{
+    public $data;
 
-    public function index(){
-        return view('main.pages.index');
+    public function __construct()
+    {
+
     }
+
 
 }
