@@ -1,5 +1,5 @@
 <div class="col-4 mt-3">
-    <a class="text-dark nounderline" href="#">
+    <a class="text-dark nounderline" href="{{ route('product', ['product_slug' => $product->slug]) }}">
         <div class="card">
             <img
                 src="{{ $product->image }}"
