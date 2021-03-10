@@ -30,3 +30,5 @@ Route::post('/register', [AccountController::class, 'register_post'])->name('reg
 Route::get('/login', [AccountController::class, 'login_get'])->name('login_get');
 Route::post('/login', [AccountController::class, 'login_post'])->name('login_post');
 Route::get('/logout', [AccountController::class, 'logout'])->name('logout');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart_add');
+
