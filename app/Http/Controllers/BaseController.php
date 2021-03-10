@@ -11,7 +11,6 @@ class BaseController extends Controller
     public function __construct()
     {
         $this->data['categories'] = Category::all();
-        $this->data['auth'] = Auth::check();
     }
 
 
