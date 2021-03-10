@@ -14,16 +14,22 @@
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @if($auth)
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">Logout</a>
-                </li>
-                @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register_get') }}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login_get') }}">Login</a>
-                </li>
+                    <li class="nav-item">
+                        <a type="button" class="nav-link active btn">
+                            Cart @if(isset($cart_count)) <span class="badge bg-secondary">{{ $cart_count }}</span> @endif
+                            <span class="visually-hidden">unread messages</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">Logout</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register_get') }}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login_get') }}">Login</a>
+                    </li>
                 @endif
             </ul>
       </span>
