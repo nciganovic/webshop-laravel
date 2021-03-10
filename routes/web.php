@@ -21,7 +21,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::get('/category/{category_slug}', [CategoryController::class, 'index'])->name('category');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/order', [OrderController::class, 'index'])->name('cart');
