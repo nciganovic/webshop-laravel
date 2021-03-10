@@ -8,8 +8,8 @@
         </div>
     </div>
     <div class="row d-flex justify-content-start">
-        @for($i = 0; $i < 20; $i++)
+        @foreach($products as $product)
             @include('main.partial.product-card')
-        @endfor
+        @endforeach
     </div>
 @endsection

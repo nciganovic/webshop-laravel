@@ -35,9 +35,9 @@
         </div>
         <div class="col-9">
             <div class="row d-flex justify-content-start">
-                @for($i = 0; $i < 20; $i++)
+                @foreach($products as $product)
                     @include('main.partial.product-card')
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>
