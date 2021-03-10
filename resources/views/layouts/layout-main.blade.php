@@ -14,4 +14,5 @@
             @include('main.includes.footer')
         </div>
     </body>
+    @yield('scripts')
 </html>
