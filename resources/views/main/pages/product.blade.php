@@ -26,7 +26,7 @@
                     </div>
                     @if($product->sale != 0)
                         <div class="btn btn-primary">{{ $product->price - (($product->price / 100) * $product->sale) }}$</div>
-                        <div class="btn btn-primary">20%</div>
+                        <div class="btn btn-primary">{{ $product->sale }}%</div>
                     @endif
                     <button data-product-id="{{ $product->id }}" id="add-cart-btn" type="button" class="btn btn-warning" @if(!$auth) onclick="alert('You need to be logged in in order to add items to cart.')" @endif >Add to Cart</button>
                 </div>

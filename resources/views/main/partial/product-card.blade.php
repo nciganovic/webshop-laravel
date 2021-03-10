@@ -20,7 +20,7 @@
                 </div>
                 @if($product->sale != 0)
                     <div class="btn btn-primary">{{ $product->price - (($product->price / 100) * $product->sale) }}$</div>
-                    <div class="btn btn-primary">20%</div>
+                    <div class="btn btn-primary">{{ $product->sale }}%</div>
                 @endif
             </div>
         </div>
