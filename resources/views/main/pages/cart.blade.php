@@ -29,6 +29,7 @@
                             <input type="number"
                                    class="item-count"
                                    data-row-id="{{ $i + 1 }}"
+                                   data-product-id="{{ $products[$i]->id }}"
                                    name=""
                                    value="{{ $products[$i]->getOriginal('pivot_count') }}"
                                     min="1"

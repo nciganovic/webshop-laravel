@@ -33,4 +33,5 @@ Route::get('/logout', [AccountController::class, 'logout'])->name('logout');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart_add');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart_remove');
 Route::get('/cart/display', [CartController::class, 'display'])->name('cart_display');
+Route::post('/cart/update/count', [CartController::class, 'update_count'])->name('cart_update_count');
 

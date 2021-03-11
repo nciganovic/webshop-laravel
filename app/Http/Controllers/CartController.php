@@ -80,4 +80,24 @@ class CartController extends BaseController
             'message' => "item removed from cart"
         ]);
     }
+
+    public function update_count(Request $request){
+        $product_id = $request->product_id;
+        $count = $request->count;
+        $user_id = Auth::id();
+
+        $active_cart = Cart::where('user_id', '=', $user_id)
+            ->where('is_active', '=', 1)->first();
+
+        $active_cart_id =$active_cart->id;
+
+        $active_cart->products()->updateExistingPivot($product_id, [
+            'count' => $count
+        ]);
+
+        return json_encode([
+            'count' =>  $count
+        ]);
+
+    }
 }

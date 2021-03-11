@@ -10,7 +10,30 @@ $(document).ready(function(){
 
         const total = Number(price) * Number(count);
 
-        $("#" + row_id + "-row-total").text(total);
+        const product_id = $(this).attr('data-product-id');
+        console.log(product_id);
+
+        $.ajax({
+            url: "http://127.0.0.1:8000/cart/update/count",
+            method: "post",
+            dataType: "json",
+            data: {
+                product_id: product_id,
+                count: count
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                console.log(data);
+                $("#" + row_id + "-row-total").text(total);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+
+
     });
 
     $(".del-row-btn").click(function (){
