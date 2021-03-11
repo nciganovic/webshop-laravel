@@ -15,7 +15,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @if($auth)
                     <li class="nav-item">
-                        <a type="button" class="nav-link active btn">
+                        <a href="{{ route('cart_display') }}" type="button" class="nav-link active btn">
                             Cart @if(isset($cart_count)) <span id="cart-count" class="badge bg-secondary">{{ $cart_count }}</span> @endif
                             <span class="visually-hidden">unread messages</span>
                         </a>
