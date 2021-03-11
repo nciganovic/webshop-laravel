@@ -13,4 +13,28 @@ $(document).ready(function(){
         $("#" + row_id + "-row-total").text(total);
     });
 
+    $(".del-row-btn").click(function (){
+        console.log("delete");
+        const id = $(this).attr('id');
+        const product_id = id.split("-")[1];
+        console.log(product_id);
+
+        $.ajax({
+            url: "http://127.0.0.1:8000/cart/remove",
+            method: "post",
+            dataType: "json",
+            data: {
+                id: product_id
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                $("#table-row-" + product_id).addClass("d-none");
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
 });

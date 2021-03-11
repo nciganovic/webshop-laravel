@@ -1,5 +1,8 @@
 @extends('layouts.layout-main')
 @section('title') Cart  @endsection
+@section('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('content')
     <div class="row mt-3 d-flex justify-content-center">
         <div class="col-12">
@@ -9,7 +12,6 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Product name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Count</th>
@@ -20,8 +22,7 @@
                 <tbody>
 
                 @for($i = 0; $i < count($products); $i++)
-                    <tr>
-                        <th scope="row">{{ $i + 1 }}</th>
+                    <tr id="table-row-{{ $products[$i]->id }}">
                         <td>{{ $products[$i]->name }}</td>
                         <td id="price-{{ $i + 1 }}">{{ $products[$i]->price }}</td>
                         <td>
@@ -36,7 +37,7 @@
                         <td id="{{ $i + 1 }}-row-total">
                             {{ $products[$i]->price * $products[$i]->getOriginal('pivot_count')}}
                         </td>
-                        <td><button type="button" class="btn btn-danger">X</button></td>
+                        <td><button type="button" id="delbtn-{{ $products[$i]->id }}" class="btn btn-danger del-row-btn">X</button></td>
                     </tr>
                 @endfor
 
