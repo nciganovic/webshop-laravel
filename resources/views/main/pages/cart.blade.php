@@ -13,31 +13,33 @@
                     <th scope="col">Product name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Count</th>
+                    <th scope="col">Total</th>
                     <th scope="col">Remove</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td><input type="number" name=""></td>
-                    <td><button type="button" class="btn btn-danger">X</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td><input type="number" name=""></td>
-                    <td><button type="button" class="btn btn-danger">X</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry the </td>
-                    <td>Bird</td>
-                    <td><input type="number" name=""></td>
-                    <td><button type="button" class="btn btn-danger">X</button></td>
-                </tr>
+
+                @for($i = 0; $i < count($products); $i++)
+                    <tr>
+                        <th scope="row">{{ $i + 1 }}</th>
+                        <td>{{ $products[$i]->name }}</td>
+                        <td id="price-{{ $i + 1 }}">{{ $products[$i]->price }}</td>
+                        <td>
+                            <input type="number"
+                                   class="item-count"
+                                   data-row-id="{{ $i + 1 }}"
+                                   name=""
+                                   value="{{ $products[$i]->getOriginal('pivot_count') }}"
+                                    min="1"
+                                    max="20">
+                        </td>
+                        <td id="{{ $i + 1 }}-row-total">
+                            {{ $products[$i]->price * $products[$i]->getOriginal('pivot_count')}}
+                        </td>
+                        <td><button type="button" class="btn btn-danger">X</button></td>
+                    </tr>
+                @endfor
+
                 </tbody>
             </table>
 
@@ -46,4 +48,7 @@
             <a href="#" class="btn btn-success">Submit</a>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('assets/js/cart.js') }}"></script>
 @endsection

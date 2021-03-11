@@ -32,3 +32,5 @@ Route::post('/login', [AccountController::class, 'login_post'])->name('login_pos
 Route::get('/logout', [AccountController::class, 'logout'])->name('logout');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart_add');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart_remove');
+Route::get('/cart/display', [CartController::class, 'display'])->name('cart_display');
+

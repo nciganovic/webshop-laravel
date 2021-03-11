@@ -11,8 +11,20 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends BaseController
 {
-    public function index(){
-        return view("main.pages.cart");
+    public function display(){
+        $this->data["auth"] = Auth::check();
+        if($this->data["auth"] == false){
+            return redirect('/');
+        }
+
+        $user_id = Auth::id();
+
+        $active_cart = Cart::where('user_id', '=', $user_id)
+            ->where('is_active', '=', 1)->first();
+
+        $this->data['products'] = $active_cart->products()->get();
+
+        return view("main.pages.cart", $this->data);
     }
 
     public function add(Request $request){

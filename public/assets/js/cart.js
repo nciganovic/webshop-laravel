@@ -1,67 +1,16 @@
 $(document).ready(function(){
     console.log('cart.js');
 
-    $('#add-cart-btn').click(function (){
-        console.log('add to cart');
+    $(".item-count").change(function (){
+        const row_id = $(this).attr('data-row-id');
+        console.log(row_id);
 
-        const product_id = $(this).attr('data-product-id');
-        console.log(product_id);
+        const price = $("#price-" + row_id).text();
+        const count = $(this).val();
 
-        $.ajax({
-            url: "http://127.0.0.1:8000/cart/add",
-            method: "post",
-            dataType: "json",
-            data: {
-                id: product_id
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function (data) {
-                console.log(data);
-                $('#add-cart-btn').toggleClass('d-none');
-                $('#remove-cart-btn').toggleClass('d-none');
+        const total = Number(price) * Number(count);
 
-                let cart_count = $('#cart-count').text();
-                cart_count = Number(cart_count) + 1;
-                $('#cart-count').text(cart_count);
-
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        });
+        $("#" + row_id + "-row-total").text(total);
     });
 
-    $('#remove-cart-btn').click(function (){
-        console.log('remove from cart');
-
-        const product_id = $(this).attr('data-product-id');
-        console.log(product_id);
-
-        $.ajax({
-            url: "http://127.0.0.1:8000/cart/remove",
-            method: "post",
-            dataType: "json",
-            data: {
-                id: product_id
-            },
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function (data) {
-                console.log(data);
-                $('#add-cart-btn').toggleClass('d-none');
-                $('#remove-cart-btn').toggleClass('d-none');
-
-                let cart_count = $('#cart-count').text();
-                cart_count = Number(cart_count) - 1;
-                $('#cart-count').text(cart_count);
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        });
-    });
-
-})
+});
