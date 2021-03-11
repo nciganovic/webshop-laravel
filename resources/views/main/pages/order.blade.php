@@ -15,60 +15,77 @@
                     <th scope="col">Product name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Count</th>
+                    <th scope="col">Total</th>
                 </tr>
                 </thead>
                 <tbody>
+                @for($i = 0; $i < count($products); $i++)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>X</td>
+                    <th scope="row">{{ $i + 1 }}</th>
+                    <td>{{ $products[$i]->name }}</td>
+                    <td>{{ $products[$i]->price }}</td>
+                    <td>{{ $products[$i]->getOriginal('pivot_count')}}</td>
+                    <td>{{ $products[$i]->price * $products[$i]->getOriginal('pivot_count') }}</td>
                 </tr>
+                @endfor
                 <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>X</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry the Bird</td>
-                    <td>Bird</td>
-                    <td>X</td>
-                </tr>
-                <tr>
-                    <th scope="row">Total:</th>
+                    <td></td>
+                    <th>Sum total:</th>
                     <td></td>
                     <td></td>
-                    <td>123</td>
+                    <td>
+                        {{ $sum }}
+                    </td>
                 </tr>
                 </tbody>
             </table>
 
         </div>
-        <div class="col-12">
-            <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">First name</label>
-                    <input type="email" class="form-control" placeholder="Enter first name">
+        <div class="col-12 mt-5">
+            <form action="{{ route('order_post') }}" method="POST">
+                @csrf
+                <div class="form-group mt-3">
+                    <label for="street">Country</label>
+                    <input type="text" class="form-control" name="country" placeholder="Enter country name">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Last name</label>
-                    <input type="email" class="form-control" placeholder="Enter last name">
+                @error('country')
+                <div class="text-danger">
+                    {{$message}}
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Street</label>
-                    <input type="email" class="form-control" placeholder="Enter street">
+
+                @enderror
+                <div class="form-group mt-3">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" name="city" placeholder="Enter city">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">City</label>
-                    <input type="email" class="form-control" placeholder="Enter city">
+                @error('city')
+                <div class="text-danger">
+                    {{$message}}
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Postal code</label>
-                    <input type="email" class="form-control" placeholder="Enter postal code">
+                @enderror
+
+                <div class="form-group mt-3">
+                    <label for="postal_code">Postal code</label>
+                    <input type="number" min="0" name="postal_code" class="form-control" placeholder="Enter postal code">
                 </div>
+                @error('postal_code')
+                <div class="text-danger">
+                    {{$message}}
+                </div>
+                @enderror
+
+                <div class="form-group mt-3">
+                    <label for="phone_number">Phone number</label>
+                    <input type="number" min="0" name="phone_number" class="form-control" placeholder="Enter phone number">
+                </div>
+                @error('phone_number')
+                <div class="text-danger">
+                    {{$message}}
+                </div>
+                @enderror
+
                 <button type="submit" class="btn btn-primary mt-5">Submit</button>
+
             </form>
         </div>
     </div>
