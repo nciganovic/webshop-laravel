@@ -25,9 +25,8 @@ class ProductController extends BaseController
         $active_cart = Cart::where('user_id', '=', $user_id)
             ->where('is_active', '=', 1)->first();
 
-        $active_cart_id =$active_cart->id;
-
         if($active_cart != null){
+            $active_cart_id =$active_cart->id;
             $find_cart = Cart::whereHas('products', function ($q) use($product_id, $active_cart_id){
                 $q->where('cart_id', '=', $active_cart_id)
                     ->where('product_id', '=', $product_id);

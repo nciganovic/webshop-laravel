@@ -9,6 +9,7 @@
             <h1 class="text-center">Cart</h1>
         </div>
         <div class="col-12">
+            @if(isset($products))
             <table class="table">
                 <thead>
                 <tr>
@@ -41,14 +42,17 @@
                         <td><button type="button" id="delbtn-{{ $products[$i]->id }}" class="btn btn-danger del-row-btn">X</button></td>
                     </tr>
                 @endfor
-
                 </tbody>
             </table>
+            <div class="col-1">
+                <a href="{{ route('order_get') }}" class="btn btn-success">Submit</a>
+            </div>
+            @else
+                <p class="text-center">Your cart is empty</p>
+            @endif
 
         </div>
-        <div class="col-1">
-            <a href="#" class="btn btn-success">Submit</a>
-        </div>
+
     </div>
 @endsection
 @section('scripts')

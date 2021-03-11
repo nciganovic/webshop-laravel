@@ -17,22 +17,23 @@ class CartController extends BaseController
             return redirect('/');
         }
 
-        $user_id = Auth::id();
+        $active_cart = Cart::get_active_cart();
 
-        $active_cart = Cart::where('user_id', '=', $user_id)
-            ->where('is_active', '=', 1)->first();
-
-        $this->data['products'] = $active_cart->products()->get();
-
-        return view("main.pages.cart", $this->data);
+        if($active_cart == null){
+            $this->data['message'] = 'Your cart is empty';
+            return view("main.pages.cart", $this->data);
+        }
+        else{
+            $this->data['products'] = $active_cart->products()->get();
+            return view("main.pages.cart", $this->data);
+        }
     }
 
     public function add(Request $request){
         $product_id = $request->id;
         $user_id = Auth::id();
 
-        $active_cart = Cart::where('user_id', '=', $user_id)
-            ->where('is_active', '=', 1)->first();
+        $active_cart = Cart::get_active_cart();
 
         if($active_cart == null){
             $active_cart = new Cart();
@@ -71,8 +72,7 @@ class CartController extends BaseController
         $product_id = $request->id;
         $user_id = Auth::id();
 
-        $active_cart = Cart::where('user_id', '=', $user_id)
-            ->where('is_active', '=', 1)->first();
+        $active_cart = Cart::get_active_cart();
 
         $active_cart->products()->detach($product_id);
 
@@ -84,10 +84,8 @@ class CartController extends BaseController
     public function update_count(Request $request){
         $product_id = $request->product_id;
         $count = $request->count;
-        $user_id = Auth::id();
 
-        $active_cart = Cart::where('user_id', '=', $user_id)
-            ->where('is_active', '=', 1)->first();
+        $active_cart = Cart::get_active_cart();
 
         $active_cart_id =$active_cart->id;
 
