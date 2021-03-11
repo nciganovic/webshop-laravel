@@ -59,5 +59,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/cart.js') }}"></script>
+    <script src="{{ asset('assets/js/product.js') }}"></script>
 @endsection
