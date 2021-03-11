@@ -54,4 +54,18 @@ class CartController extends BaseController
             'cart' => $active_cart
         ]);
     }
+
+    public function remove(Request $request){
+        $product_id = $request->id;
+        $user_id = Auth::id();
+
+        $active_cart = Cart::where('user_id', '=', $user_id)
+            ->where('is_active', '=', 1)->first();
+
+        $active_cart->products()->detach($product_id);
+
+        return json_encode([
+            'message' => "item removed from cart"
+        ]);
+    }
 }

@@ -31,7 +31,7 @@
                     @if(!$is_product_in_cart)
                         <button data-product-id="{{ $product->id }}" id="add-cart-btn" type="button" class="btn btn-warning" @if(!$auth) onclick="alert('You need to be logged in in order to add items to cart.')" @endif >Add to Cart</button>
                     @else
-                        <button class="btn btn-danger" type="button">Remove from Cart</button>
+                        <button data-product-id="{{ $product->id }}" id="remove-cart-btn" type="button" class="btn btn-danger" >Remove from Cart</button>
                     @endif
                 </div>
 
