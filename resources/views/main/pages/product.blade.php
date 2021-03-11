@@ -28,11 +28,29 @@
                         <div class="btn btn-primary">{{ $product->price - (($product->price / 100) * $product->sale) }}$</div>
                         <div class="btn btn-primary">{{ $product->sale }}%</div>
                     @endif
-                    @if(!$is_product_in_cart)
-                        <button data-product-id="{{ $product->id }}" id="add-cart-btn" type="button" class="btn btn-warning" @if(!$auth) onclick="alert('You need to be logged in in order to add items to cart.')" @endif >Add to Cart</button>
-                    @else
-                        <button data-product-id="{{ $product->id }}" id="remove-cart-btn" type="button" class="btn btn-danger" >Remove from Cart</button>
-                    @endif
+
+                        <button data-product-id="{{ $product->id }}"
+                                id="add-cart-btn" type="button"
+                                class="btn btn-warning
+                                @if($is_product_in_cart)
+                                    d-none
+                                @endif"
+                                @if(!$auth)
+                                    onclick="alert('You need to be logged in in order to add items to cart.')"
+                                @endif >
+                            Add to Cart
+                        </button>
+
+                        <button data-product-id="{{ $product->id }}"
+                                id="remove-cart-btn"
+                                type="button"
+                                class="btn btn-danger
+                                @if(!$is_product_in_cart)
+                                    d-none
+                                @endif">
+                            Remove from Cart
+                        </button>
+
                 </div>
 
             </div>

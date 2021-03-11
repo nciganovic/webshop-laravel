@@ -16,7 +16,7 @@
                 @if($auth)
                     <li class="nav-item">
                         <a type="button" class="nav-link active btn">
-                            Cart @if(isset($cart_count)) <span class="badge bg-secondary">{{ $cart_count }}</span> @endif
+                            Cart @if(isset($cart_count)) <span id="cart-count" class="badge bg-secondary">{{ $cart_count }}</span> @endif
                             <span class="visually-hidden">unread messages</span>
                         </a>
                     </li>

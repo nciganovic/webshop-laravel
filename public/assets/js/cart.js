@@ -19,6 +19,13 @@ $(document).ready(function(){
             },
             success: function (data) {
                 console.log(data);
+                $('#add-cart-btn').toggleClass('d-none');
+                $('#remove-cart-btn').toggleClass('d-none');
+
+                let cart_count = $('#cart-count').text();
+                cart_count = Number(cart_count) + 1;
+                $('#cart-count').text(cart_count);
+
             },
             error: function (data) {
                 console.log(data);
@@ -44,6 +51,12 @@ $(document).ready(function(){
             },
             success: function (data) {
                 console.log(data);
+                $('#add-cart-btn').toggleClass('d-none');
+                $('#remove-cart-btn').toggleClass('d-none');
+
+                let cart_count = $('#cart-count').text();
+                cart_count = Number(cart_count) - 1;
+                $('#cart-count').text(cart_count);
             },
             error: function (data) {
                 console.log(data);
