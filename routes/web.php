@@ -19,6 +19,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ContactUsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category_slug}', [CategoryController::class, 'index'])->name('category');
@@ -36,3 +37,5 @@ Route::get('/cart/display', [CartController::class, 'display'])->name('cart_disp
 Route::post('/cart/update/count', [CartController::class, 'update_count'])->name('cart_update_count');
 Route::get('/order',[OrderController::class, 'order_get'])->name('order_get');
 Route::post('/order', [OrderController::class, 'order_post'])->name('order_post');
+Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_us');
+Route::post('/contactus', [ContactUsController::class, 'send_email'])->name('send_email');
