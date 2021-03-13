@@ -43,9 +43,11 @@
 
                 <button type="submit" class="btn btn-primary mt-3">Submit</button>
 
+                @if(isset($mail_result) && $mail_result == 1)
                 <div class="col-12 bg-success rounded mt-5">
                     <p class="text-center p-3">Message sent successfully</p>
                 </div>
+                @endif
 
             </form>
         </div>
