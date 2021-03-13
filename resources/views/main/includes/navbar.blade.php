@@ -11,6 +11,9 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('category', ['category_slug' => $ctg->slug]) }}">{{ $ctg->name }}</a>
                 </li>
                 @endforeach
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('contact_us') }}">Contact us</a>
+                </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @if($auth)
