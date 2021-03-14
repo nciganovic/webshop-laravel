@@ -66,7 +66,16 @@ class AccountController extends BaseController
         }
 
         if(Auth::attempt(['email' => $credentials["email"], 'password' => $credentials["password"]], $remember)) {
-            return redirect('/');
+            $user = User::where('email', '=', $credentials["email"])->first();
+            $role = Role::where('id', '=', $user->role_id)->first();
+
+            if($role->name == 'admin'){
+                return redirect()->route('admin_index');
+            }
+            else{
+                return redirect()->route('home');
+            }
+
         }
 
         return back()->withErrors([

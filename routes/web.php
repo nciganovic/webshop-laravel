@@ -20,6 +20,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category_slug}', [CategoryController::class, 'index'])->name('category');
@@ -39,3 +40,5 @@ Route::get('/order',[OrderController::class, 'order_get'])->name('order_get');
 Route::post('/order', [OrderController::class, 'order_post'])->name('order_post');
 Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_us');
 Route::post('/contactus', [ContactUsController::class, 'send_email'])->name('send_email');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin_index');
+Route::get('/admin/products', [AdminController::class, 'products_show'])->name('products_show');
