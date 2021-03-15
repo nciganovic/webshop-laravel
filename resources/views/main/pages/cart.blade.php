@@ -25,7 +25,11 @@
                 @for($i = 0; $i < count($products); $i++)
                     <tr id="table-row-{{ $products[$i]->id }}">
                         <td>{{ $products[$i]->name }}</td>
-                        <td id="price-{{ $i + 1 }}">{{ $products[$i]->price }}</td>
+                            @if($products[$i]->sale != 0)
+                                <td id="price-{{ $i + 1 }}">{{ $products[$i]->price - (($products[$i]->price / 100) * $products[$i]->sale) }}</td>
+                            @else
+                                <td id="price-{{ $i + 1 }}">{{ $products[$i]->price }}</td>
+                            @endif
                         <td>
                             <input type="number"
                                    class="item-count"
@@ -36,9 +40,17 @@
                                     min="1"
                                     max="20">
                         </td>
-                        <td id="{{ $i + 1 }}-row-total">
-                            {{ $products[$i]->price * $products[$i]->getOriginal('pivot_count')}}
-                        </td>
+
+                        @if($products[$i]->sale != 0)
+                            <td id="{{ $i + 1 }}-row-total">
+                                {{ ($products[$i]->price - (($products[$i]->price / 100) * $products[$i]->sale)) * $products[$i]->getOriginal('pivot_count')}}
+                            </td>
+                        @else
+                            <td id="{{ $i + 1 }}-row-total">
+                                {{ $products[$i]->price * $products[$i]->getOriginal('pivot_count')}}
+                            </td>
+                        @endif
+
                         <td><button type="button" id="delbtn-{{ $products[$i]->id }}" class="btn btn-danger del-row-btn">X</button></td>
                     </tr>
                 @endfor
