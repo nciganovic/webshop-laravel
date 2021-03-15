@@ -3,6 +3,8 @@ namespace  App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class BaseController extends Controller
@@ -15,6 +17,7 @@ class BaseController extends Controller
 
         $this->middleware(function ($request, $next) {
             $this->data['cart_count'] = $this->CountCartItems();
+            $this->data['is_admin'] = $this->IsAdmin();
             return $next($request);
         });
 
@@ -34,6 +37,21 @@ class BaseController extends Controller
         }
 
         return 0;
+    }
+
+    private function IsAdmin(){
+        $user = User::where('id', '=', Auth::id())->first();
+        if($user != null){
+            $role = Role::where('id', '=', $user->role_id)->first();
+            if($role != null){
+                if($role->name == 'admin'){
+                    return true;
+                }
+                return false;
+            }
+            return  false;
+        }
+        return false;
     }
 
 }

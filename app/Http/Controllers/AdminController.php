@@ -12,7 +12,21 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends AdminBaseController
 {
+    public function CheckAdmin(){
+        $this->data['user'] = $this->GetAdmin();
+        if($this->data['user'] == null){
+            return false;
+        }
+        else{
+            return  true;
+        }
+    }
+
     public function index(){
+        if(!$this->CheckAdmin()){
+            return redirect()->route('home');
+        }
+
         return view('admin.page.index', $this->data);
     }
 
