@@ -51,7 +51,12 @@ class OrderController extends BaseController
         $active_cart->is_active = false;
         $active_cart->save();
 
-        return redirect()->route('order_success');
+        $this->data["auth"] = Auth::check();
+        if($this->data["auth"] == false){
+            return redirect('/');
+        }
+
+        return view('main.pages.order-success', $this->data);
     }
 
     private function calculate_sum_total($products){
