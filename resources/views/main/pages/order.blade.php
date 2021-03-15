@@ -23,9 +23,21 @@
                 <tr>
                     <th scope="row">{{ $i + 1 }}</th>
                     <td>{{ $products[$i]->name }}</td>
-                    <td>{{ $products[$i]->price }}</td>
+                    @if($products[$i]->sale != 0)
+                        <td id="price-{{ $i + 1 }}">{{ $products[$i]->price - (($products[$i]->price / 100) * $products[$i]->sale) }}</td>
+                    @else
+                        <td id="price-{{ $i + 1 }}">{{ $products[$i]->price }}</td>
+                    @endif
                     <td>{{ $products[$i]->getOriginal('pivot_count')}}</td>
-                    <td>{{ $products[$i]->price * $products[$i]->getOriginal('pivot_count') }}</td>
+                    @if($products[$i]->sale != 0)
+                        <td id="{{ $i + 1 }}-row-total">
+                            {{ ($products[$i]->price - (($products[$i]->price / 100) * $products[$i]->sale)) * $products[$i]->getOriginal('pivot_count')}}
+                        </td>
+                    @else
+                        <td id="{{ $i + 1 }}-row-total">
+                            {{ $products[$i]->price * $products[$i]->getOriginal('pivot_count')}}
+                        </td>
+                    @endif
                 </tr>
                 @endfor
                 <tr>

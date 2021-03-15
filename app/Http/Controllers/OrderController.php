@@ -51,13 +51,18 @@ class OrderController extends BaseController
         $active_cart->is_active = false;
         $active_cart->save();
 
-        return view('main.pages.order-success.blade.php');
+        return redirect()->route('order_success');
     }
 
     private function calculate_sum_total($products){
         $sum = 0;
         for($i = 0; $i < count($products); $i++){
-            $sum += $products[$i]->price * $products[$i]->getOriginal('pivot_count');
+            if($products[$i]->sale == 0){
+                $sum += $products[$i]->price * $products[$i]->getOriginal('pivot_count');
+            }
+            else{
+                $sum += ($products[$i]->price - (($products[$i]->price / 100) * $products[$i]->sale))* $products[$i]->getOriginal('pivot_count');
+            }
         }
         return $sum;
     }
