@@ -22,6 +22,9 @@ class OrderController extends BaseController
         if($active_cart == null){
             return redirect('/');
         }
+        else if(count($active_cart->products) == 0){
+            return redirect('/');
+        }
 
         $this->data['products'] = $active_cart->products()->get();
 
