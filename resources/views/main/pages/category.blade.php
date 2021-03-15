@@ -24,10 +24,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-3">
-
-        </div>
-        <div class="col-9 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center mt-5">
             {{ $products->links() }}
         </div>
     </div>
