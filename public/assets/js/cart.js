@@ -2,13 +2,18 @@ $(document).ready(function(){
     console.log('cart.js');
 
     $(".item-count").change(function (){
+        if(Number($(this).val()) < 1 || Number($(this).val()) > 20){
+            $(this).val(1);
+        }
+
         const row_id = $(this).attr('data-row-id');
         console.log(row_id);
 
         const price = $("#price-" + row_id).text();
         const count = $(this).val();
 
-        const total = Number(price) * Number(count);
+        let total = Number(price) * Number(count);
+        total = Math.round(total * 10) / 10;
 
         const product_id = $(this).attr('data-product-id');
         console.log(product_id);
@@ -54,6 +59,10 @@ $(document).ready(function(){
             },
             success: function (data) {
                 $("#table-row-" + product_id).addClass("d-none");
+
+                let cart_count = $('#cart-count').text();
+                cart_count = Number(cart_count) - 1;
+                $('#cart-count').text(cart_count);
             },
             error: function (data) {
                 console.log(data);
