@@ -8,7 +8,7 @@
         <div class="col-6">
             <div class="card">
                 <img
-                    src="{{ asset("assets/img/".$product->image) }}"
+                    src="{{ asset($product->image) }}"
                     class="card-img-top"
                     alt="{{ $product->name }}"
                 />

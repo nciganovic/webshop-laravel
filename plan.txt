@@ -71,3 +71,11 @@ Pages
 /product_slug
 /contact
 /
+
+Admin Activity
+Author Page
+Documentation
+CRUD Category
+CRUD Size
+CRUD Users
+Add images

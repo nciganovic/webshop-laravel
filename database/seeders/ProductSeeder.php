@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
                 'name' => $product_name." ".$product_city ,
                 'price' => rand(1000, 10000),
                 'description' => $faker->paragraph,
-                'image' => 'product'.$i.'.jpg',
+                'image' => 'storage/product'.$i.'.jpg',
                 'slug' => $product_name."_".$product_city ,
                 'sale' => $sale[$random_sale_index]
             ]);
