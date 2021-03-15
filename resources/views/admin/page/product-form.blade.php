@@ -39,7 +39,7 @@
                     <input type="file" class="form-control" id="image" name="image" placeholder="Image">
                     <div class="mt-3">
                         @if(isset($product->image))
-                            <img src="{{ asset($product->image) }}" alt="$product->name">
+                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
                         @endif
                     </div>
                     @error('image')
@@ -53,6 +53,19 @@
                         <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
+                @foreach($categories as $category)
+                    <div class="custom-control custom-checkbox mr-5">
+                        <input type="checkbox" class="custom-control-input" id="category{{ $category->id }}" name="category_id[]" value="{{ $category->id }}"
+                               @if(isset($product) && in_array($category->id, $product->categories()->pluck('category_id')->toArray()))
+                               checked
+                               @elseif(is_array(old('category_id')) && in_array($category->id, old('category_id')))
+                               checked
+                            @endif
+                        />
+                        <label class="custom-control-label" for="category{{ $category->id }}">{{ $category->name }}</label>
+                    </div>
+                @endforeach
+
                 <button class="btn btn-success mt-3" type="submit">
                     @if($action == "create")
                         Create

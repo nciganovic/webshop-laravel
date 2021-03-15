@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -22,6 +23,7 @@ class AdminController extends AdminBaseController
     public function  product_create_get(){
         $this->data["product"] = new Product();
         $this->data['action'] = 'create';
+        $this->data['categories'] = Category::all();
         return view('admin.page.product-form', $this->data);
     }
 
@@ -47,12 +49,15 @@ class AdminController extends AdminBaseController
         $product->sale = $request->sale;
         $product->save();
 
+        $product->categories()->attach($request->category_id);
+
         return redirect()->route('products_show');
     }
 
     public function product_edit_get($id){
         $this->data['action'] = 'edit';
         $this->data['product'] = Product::where('id', '=', $id)->first();
+        $this->data['categories'] = Category::all();
         return view('admin.page.product-form', $this->data);
     }
 
@@ -84,6 +89,8 @@ class AdminController extends AdminBaseController
         $old_product->slug = str_replace(" ", "_", $old_product->name);
         $old_product->sale = $request->sale;
         $old_product->save();
+
+        $old_product->categories()->sync($request->category_id);
 
         return redirect()->route('products_show');
     }
