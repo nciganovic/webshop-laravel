@@ -3,6 +3,9 @@
     <div class="row">
         <div class="col-12">
             <h1 class="text-center m-3">Products</h1>
+            <div class="mt-3 mb-3">
+                <a class="btn btn-success" href="{{ route('product_create_get') }}">Create</a>
+            </div>
             <table class="table table-hover">
                 <tr>
                     <th>Id</th>
@@ -27,10 +30,8 @@
                     </tr>
                 @endforeach
             </table>
-
-
         </div>
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center mt-3">
             {{ $products->links() }}
         </div>
     </div>

@@ -42,3 +42,5 @@ Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_u
 Route::post('/contactus', [ContactUsController::class, 'send_email'])->name('send_email');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin_index');
 Route::get('/admin/products', [AdminController::class, 'products_show'])->name('products_show');
+Route::get('/admin/products/create', [AdminController::class, 'product_create_get'])->name('product_create_get');
+Route::post('/admin/products/create', [AdminController::class, 'product_create_post'])->name('product_create_post');
