@@ -87,4 +87,9 @@ class AdminController extends AdminBaseController
 
         return redirect()->route('products_show');
     }
+
+    public function product_delete(Request $request){
+        Product::where('id', '=', $request->id)->delete();
+        return response()->json(['message' => 'success']);
+    }
 }

@@ -1,4 +1,7 @@
 @extends('layouts.layout-admin')
+@section('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -26,7 +29,7 @@
                         <th>{{ $product->slug }}</th>
                         <th>{{ $product->sale }}</th>
                         <th><a class="btn btn-info" href="{{ route('product_edit_get', ['id' => $product->id]) }}">Edit</a></th>
-                        <th><a class="btn btn-danger" href="#">Delete</a></th>
+                        <th><button data-id="{{ $product->id }}" class="btn btn-danger" href="#">Delete</button></th>
                     </tr>
                 @endforeach
             </table>
@@ -35,4 +38,7 @@
             {{ $products->links() }}
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('assets/js/delete_product.js') }}"></script>
 @endsection

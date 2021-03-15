@@ -46,3 +46,4 @@ Route::get('/admin/products/create', [AdminController::class, 'product_create_ge
 Route::post('/admin/products/create', [AdminController::class, 'product_create_post'])->name('product_create_post');
 Route::get('/admin/products/edit/{id}', [AdminController::class, 'product_edit_get'])->name('product_edit_get');
 Route::post('/admin/products/edit/{id}', [AdminController::class, 'product_edit_post'])->name('product_edit_post');
+Route::delete('/admin/products/delete', [AdminController::class, 'product_delete'])->name('product_delete');
