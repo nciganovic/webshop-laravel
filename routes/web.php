@@ -44,3 +44,5 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin_index');
 Route::get('/admin/products', [AdminController::class, 'products_show'])->name('products_show');
 Route::get('/admin/products/create', [AdminController::class, 'product_create_get'])->name('product_create_get');
 Route::post('/admin/products/create', [AdminController::class, 'product_create_post'])->name('product_create_post');
+Route::get('/admin/products/edit/{id}', [AdminController::class, 'product_edit_get'])->name('product_edit_get');
+Route::post('/admin/products/edit/{id}', [AdminController::class, 'product_edit_post'])->name('product_edit_post');

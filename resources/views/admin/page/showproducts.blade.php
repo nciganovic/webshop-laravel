@@ -25,7 +25,7 @@
                         <th>{{ $product->image }}</th>
                         <th>{{ $product->slug }}</th>
                         <th>{{ $product->sale }}</th>
-                        <th><a class="btn btn-info" href="#">Edit</a></th>
+                        <th><a class="btn btn-info" href="{{ route('product_edit_get', ['id' => $product->id]) }}">Edit</a></th>
                         <th><a class="btn btn-danger" href="#">Delete</a></th>
                     </tr>
                 @endforeach
