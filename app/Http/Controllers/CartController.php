@@ -77,7 +77,7 @@ class CartController extends BaseController
         $active_cart->products()->detach($product_id);
 
         return json_encode([
-            'message' => "item removed from cart"
+            'message' => $active_cart->products()->count()
         ]);
     }
 

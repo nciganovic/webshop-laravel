@@ -63,6 +63,12 @@ $(document).ready(function(){
                 let cart_count = $('#cart-count').text();
                 cart_count = Number(cart_count) - 1;
                 $('#cart-count').text(cart_count);
+
+                if(data.message == 0){
+                    $("#cart-table").addClass("d-none");
+                    $("#cart-button").addClass("d-none");
+                    $("#cart-text").removeClass("d-none");
+                }
             },
             error: function (data) {
                 console.log(data);

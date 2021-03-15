@@ -9,8 +9,8 @@
             <h1 class="text-center">Cart</h1>
         </div>
         <div class="col-12">
-            @if(isset($products))
-            <table class="table">
+            @if(isset($products) && count($products) > 0)
+            <table id="cart-table" class="table">
                 <thead>
                 <tr>
                     <th scope="col">Product name</th>
@@ -56,8 +56,11 @@
                 @endfor
                 </tbody>
             </table>
-            <div class="col-1">
+            <div id="cart-button" class="col-1">
                 <a href="{{ route('order_get') }}" class="btn btn-success">Submit</a>
+            </div>
+            <div id="cart-text" class="d-none">
+                <p class="text-center">Your cart is empty</p>
             </div>
             @else
                 <p class="text-center">Your cart is empty</p>
