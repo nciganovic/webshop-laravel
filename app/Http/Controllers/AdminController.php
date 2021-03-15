@@ -31,11 +31,19 @@ class AdminController extends AdminBaseController
     }
 
     public function  products_show(){
+        if(!$this->CheckAdmin()){
+            return redirect()->route('home');
+        }
+
         $this->data["products"] = Product::where('id', '>', '0')->paginate(15);
         return view('admin.page.showproducts', $this->data);
     }
 
     public function  product_create_get(){
+        if(!$this->CheckAdmin()){
+            return redirect()->route('home');
+        }
+
         $this->data["product"] = new Product();
         $this->data['action'] = 'create';
         $this->data['categories'] = Category::all();
@@ -44,6 +52,10 @@ class AdminController extends AdminBaseController
     }
 
     public function product_create_post(Request $request){
+        if(!$this->CheckAdmin()){
+            return redirect()->route('home');
+        }
+
         $this->validate($request, [
            'name' => 'required',
            'price' => 'required|numeric|min:0',
@@ -72,6 +84,10 @@ class AdminController extends AdminBaseController
     }
 
     public function product_edit_get($id){
+        if(!$this->CheckAdmin()){
+            return redirect()->route('home');
+        }
+
         $this->data['action'] = 'edit';
         $this->data['product'] = Product::where('id', '=', $id)->first();
         $this->data['categories'] = Category::all();
@@ -80,6 +96,10 @@ class AdminController extends AdminBaseController
     }
 
     public function product_edit_post(Request $request, $id){
+        if(!$this->CheckAdmin()){
+            return redirect()->route('home');
+        }
+
         $old_product = Product::where('id', '=', $id)->first();
 
         $this->validate($request, [
@@ -115,6 +135,10 @@ class AdminController extends AdminBaseController
     }
 
     public function product_delete(Request $request){
+        if(!$this->CheckAdmin()){
+            return redirect()->route('home');
+        }
+
         Product::where('id', '=', $request->id)->delete();
         return response()->json(['message' => 'success']);
     }
