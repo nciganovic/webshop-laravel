@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
 
         $sale = [0, 10, 20, 30, 40];
 
-        for($i = 1; $i <= 150; $i++) {
+        for($i = 1; $i <= 44; $i++) {
             $product_name = $faker->word;
             $product_city = $faker->city;
             $random_sale_index = rand(0, 4);
