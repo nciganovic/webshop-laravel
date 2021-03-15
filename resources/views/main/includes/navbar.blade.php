@@ -14,6 +14,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('contact_us') }}">Contact us</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('about_me') }}">About me</a>
+                </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @if($auth)

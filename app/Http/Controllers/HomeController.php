@@ -11,4 +11,10 @@ class HomeController extends BaseController
         $this->data['auth'] = Auth::check();
         return view('main.pages.index', $this->data);
     }
+
+    public function about_me(){
+        $this->data['products'] = Product::orderBy('created_at', 'DESC')->paginate(10);
+        $this->data['auth'] = Auth::check();
+        return view('main.pages.aboutme', $this->data);
+    }
 }

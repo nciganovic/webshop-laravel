@@ -47,3 +47,4 @@ Route::post('/admin/products/create', [AdminController::class, 'product_create_p
 Route::get('/admin/products/edit/{id}', [AdminController::class, 'product_edit_get'])->name('product_edit_get');
 Route::post('/admin/products/edit/{id}', [AdminController::class, 'product_edit_post'])->name('product_edit_post');
 Route::delete('/admin/products/delete', [AdminController::class, 'product_delete'])->name('product_delete');
+Route::get('/aboutme', [HomeController::class, 'about_me'])->name('about_me');
