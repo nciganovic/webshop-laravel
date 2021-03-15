@@ -2,7 +2,13 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1 class="text-center">Create product</h1>
+            <h1 class="text-center">
+                @if($action == "create")
+                    Create product
+                @else
+                    Edit product
+                @endif
+            </h1>
             <form
                 enctype="multipart/form-data" method="POST"
                 @if($action == "create")
@@ -53,18 +59,37 @@
                         <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
-                @foreach($categories as $category)
-                    <div class="custom-control custom-checkbox mr-5">
-                        <input type="checkbox" class="custom-control-input" id="category{{ $category->id }}" name="category_id[]" value="{{ $category->id }}"
-                               @if(isset($product) && in_array($category->id, $product->categories()->pluck('category_id')->toArray()))
-                               checked
-                               @elseif(is_array(old('category_id')) && in_array($category->id, old('category_id')))
-                               checked
-                            @endif
-                        />
-                        <label class="custom-control-label" for="category{{ $category->id }}">{{ $category->name }}</label>
-                    </div>
-                @endforeach
+                <div class="mt-3">
+                    <p>Categories</p>
+                    @foreach($categories as $category)
+                        <div class="custom-control custom-checkbox mr-5">
+                            <input type="checkbox" class="custom-control-input" id="category{{ $category->id }}" name="category_id[]" value="{{ $category->id }}"
+                                   @if(isset($product) && in_array($category->id, $product->categories()->pluck('category_id')->toArray()))
+                                        checked
+                                   @elseif(is_array(old('category_id')) && in_array($category->id, old('category_id')))
+                                        checked
+                                   @endif
+                            />
+                            <label class="custom-control-label" for="category{{ $category->id }}">{{ $category->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="mt-3">
+                    <p>Sizes</p>
+                    @foreach($sizes as $size)
+                        <div class="custom-control custom-checkbox mr-5">
+                            <input type="checkbox" class="custom-control-input" id="size{{ $size->id }}" name="size_id[]" value="{{ $size->id }}"
+                                   @if(isset($product) && in_array($size->id, $product->sizes()->pluck('size_id')->toArray()))
+                                        checked
+                                   @elseif(is_array(old('size_id')) && in_array($size->id, old('size_id')))
+                                        checked
+                                    @endif
+                            />
+                            <label class="custom-control-label" for="size{{ $size->id }}">{{ $size->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
 
                 <button class="btn btn-success mt-3" type="submit">
                     @if($action == "create")
