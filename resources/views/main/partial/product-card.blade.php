@@ -2,7 +2,7 @@
     <a class="text-dark nounderline" href="{{ route('product', ['product_slug' => $product->slug]) }}">
         <div class="card">
             <img
-                src="{{ $product->image }}"
+                src="{{ asset($product->image) }}"
                 class="card-img-top"
                 alt="{{ $product->name }}"
             />
